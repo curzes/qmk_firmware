@@ -1,20 +1,30 @@
 #include QMK_KEYBOARD_H
+#include "keymap_swedish.h"
 
 enum planck_keycodes {
-  QMKBEST = SAFE_RANGE,
+  AE_ENT = SAFE_RANGE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QMKBEST:
+    case AE_ENT: {
+      static uint8_t kc;
       if (record->event.pressed) {
-        // when keycode QMKBEST is pressed
-        SEND_STRING("QMK is the best thing ever!");
+        bool isShifted = get_mods() & MOD_MASK_SHIFT;
+        if (isShifted) {
+          del_mods(MOD_MASK_SHIFT);
+          kc = KC_ENT;
+        } else {
+          kc = SE_AE;
+        }
+        register_code(kc);
+        if (isShifted) {
+          register_code(KC_LSFT);
+        }
       } else {
-        // when keycode QMKBEST is released
+        unregister_code(kc);
       }
-      break;
-
+    }
   }
   return true;
 };
@@ -33,28 +43,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * `-----------------------------------------------------------------------------------'
   */
   [0] = LAYOUT_planck_grid(
-      KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P ,   KC_G ,   KC_J ,   KC_L,    KC_U,    KC_Y,    KC_GRV , KC_RBRC,
-      KC_BSPC, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O ,   KC_QUOT,
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_MINS, QMKBEST,
-      KC_LCTL, KC_LGUI, KC_LALT, KC_RALT, MO(1),   KC_SPC,  KC_SPC,  MO(2),   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+      KC_TAB,  SE_Q,    SE_W,    SE_F,    SE_P ,   SE_G ,   SE_J ,   SE_L,    SE_U,    SE_Y,    SE_OSLH ,SE_AA,
+      KC_BSPC, SE_A,    SE_R,    SE_S,    SE_T,    SE_D,    SE_H,    SE_N,    SE_E,    SE_I,    SE_O ,   AE_ENT,
+      KC_LSFT, SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,    SE_K,    SE_M,    SE_COMM, SE_DOT,  SE_MINS, _______,
+      KC_LCTL, KC_LGUI, KC_LALT, _______, MO(1),   KC_SPC,  KC_SPC,  MO(2),   KC_RALT, _______, _______, _______
   ),
 
   /* Lower
   * ,-----------------------------------------------------------------------------------.
-  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
+  * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
   * |------+------+------+------+------+-------------+------+------+------+------+------|
-  * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  |   |
+  * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |      |      |   {} |  []  |  {}  |
   * |------+------+------+------+------+------|------+------+------+------+------+------|
-  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | |      |      |Enter |
+  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |      |      |      |      |      |
   * |------+------+------+------+------+------+------+------+------+------+------+------|
-  * |Reset |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+  * |Reset |      |      |      |      |             |      |      |      |      |      |
   * `-----------------------------------------------------------------------------------'
   */
   [1] = LAYOUT_planck_grid(
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,S(KC_NUHS),S(KC_NUBS),_______, _______, _______,
-    RESET,   _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+    KC_TILD, SE_1,    SE_2,    SE_3,    SE_4,    SE_5,    SE_6,    SE_7,    SE_8,    SE_9,    SE_0,    KC_BSPC,
+    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, _______, SE_LBRC, SE_LPRN, SE_LCBR,
+    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
   /* Raise
