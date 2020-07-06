@@ -25,37 +25,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Lower
   * ,-----------------------------------------------------------------------------------.
-  * |  Esc |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  +?\ | 
+  * |  Esc |  F1  |  F2  |  F3  |  F4  |      |      |      |   Up |      |      |      | 
   * |------+------+------+------+------+-------------+------+------+------+------+------|
-  * | Back |      |      |      |      |      |      |      |      |      |      |      |
+  * | Back |  F5  |  F6  |  F7  |  F8  |      |      | Left | Down | Right|      |      |
   * |------+------+------+------+------+------|------+------+------+------+------+------|
-  * | Shift|  >   |      |      |      |      |      |      |      |      |      |      |
+  * | Shift|  F9  |  F10 |  F11 |  F12 |      |      |      |      |      |      |      |
   * |------+------+------+------+------+------+------+------+------+------+------+------|
   * | Ctrl |  Win |      |  Alt |Lower |    Space    |Raise | RAlt |      |      |      |
   * `-----------------------------------------------------------------------------------'
   */
   [1] = LAYOUT_planck_grid(
-    KC_ESC,  SE_1,    SE_2,    SE_3,    SE_4,    SE_5,    SE_6,    SE_7,    SE_8,    SE_9,    SE_0,    SE_PLUS,
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______, SE_LABK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
+    _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
   /* Raise
   * ,-----------------------------------------------------------------------------------.
-  * |   ~  |  F1  |  F2  |  F3  |  F4  |      |      |      |  Up  |      |      | Bksp |
+  * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  +?\ |
   * |------+------+------+------+------+-------------+------+------+------+------+------|
-  * | Back |  F5  |  F6  |  F7  |  F8  |      |      | Left | Down | Right|      | Enter|
+  * | Back |      |      |      |      |      |      |      |      |      |      | Enter|
   * |------+------+------+------+------+------|------+------+------+------+------+------|
-  * | Shift|  F9  | F10  | F11  | F12  |      |      |      |      |      |      |      |
+  * | Shift|      |      |      |      |      |      |      |      |      |      |      |
   * |------+------+------+------+------+------+------+------+------+------+------+------|
   * | Ctrl |  Win |      |  Alt |Lower |    Space    |Raise | RAlt |      |      |      |
   * `-----------------------------------------------------------------------------------'
   */
   [2] = LAYOUT_planck_grid(
-    SE_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, KC_BSPC,
-    _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_ENT,
-    _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    SE_TILD, SE_1,    SE_2,    SE_3,    SE_4,    SE_5,    SE_6,    SE_7,    SE_8,    SE_9,    SE_0,    SE_PLUS,
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT,
+    _______, SE_LABK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
